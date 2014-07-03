@@ -1,16 +1,22 @@
-module slowClock (CLK,SCLK);
-	
+module slowClock (SYNC,CLK,SCLK);
+	input SYNC;
 	input CLK;
 	output reg SCLK;
 	
-	reg [32:0] cnt;
+	reg [31:0] cnt;
+	reg pSYNC;
 	
 	always @ (posedge CLK) begin
-		cnt = cnt + 32'd1;
-		if(cnt == 32'd2604)begin
-			cnt = 0;
-			SCLK = ~SCLK;
+		if(!SYNC && pSYNC)begin
+			cnt <= 32'd1302;
+		end else begin
+			cnt <= cnt + 32'd1;
+			if(cnt == 32'd2604)begin
+				cnt <= 32'd0;
+				SCLK <= ~SCLK;
+			end
 		end
+		pSYNC <= SYNC;
 	end
 	
 endmodule

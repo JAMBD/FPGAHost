@@ -8,10 +8,10 @@ module slowClock (SYNC,CLK,SCLK);
 	
 	always @ (posedge CLK) begin
 		if(!SYNC && pSYNC)begin
-			cnt <= 32'd1302;
+			cnt <= 32'd651;
 		end else begin
 			cnt <= cnt + 32'd1;
-			if(cnt == 32'd2604)begin
+			if(cnt == 32'd1302)begin
 				cnt <= 32'd0;
 				SCLK <= ~SCLK;
 			end

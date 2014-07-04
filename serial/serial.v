@@ -48,8 +48,8 @@ module serial (CLK,TXD,RXD,LED);
 			cirBuf[head] <= in;
 			TXD <= 1'b1;
 		end else if(inSt != 4'h0)begin
-			in[4'h8 - inSt] <= RXD;
-			TXD <= data[4'h8 - inSt];
+			in[4'h9 - inSt] <= RXD;
+			TXD <= data[4'h9 - inSt];
 			inSt <= inSt - 4'h1;
 		end
 	end
